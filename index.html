@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Login</title>
+    <style>
+        /* Styles for modal (hidden by default) */
+        .modal {
+            display: none; /* Hide modal initially */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Close button */
+        .close {
+            color: red;
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My Website</h1>
+    <button onclick="openModal()">Login</button>
+
+    <!-- The Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="return loginUser(event)">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                <br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Open modal
+        function openModal() {
+            document.getElementById("loginModal").style.display = "block";
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById("loginModal").style.display = "none";
+        }
+
+        // Login function
+        function loginUser(event) {
+            event.preventDefault(); // Prevent page reload
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Simple authentication (Replace with actual backend check)
+            if (username === "admin" && password === "password") {
+                alert("Login successful!");
+                document.body.innerHTML += `<p>User logged in: ${username}</p>`;
+                closeModal(); // Close the login modal
+            } else {
+                alert("Invalid credentials!");
+            }
+        }
+    </script>
+
+</body>
+</html>
